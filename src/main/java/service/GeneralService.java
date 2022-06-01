@@ -12,7 +12,7 @@ public interface GeneralService<T> {
 
     public boolean update(T t) throws SQLException;
 
-    public boolean delete(T t) throws SQLException;
+    public boolean delete(int t) throws SQLException;
 
 
 }

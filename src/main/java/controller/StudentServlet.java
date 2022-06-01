@@ -34,9 +34,23 @@ public class StudentServlet extends HttpServlet {
                 break;
             case "delete":
                 showDelete(request,response);
+                break;
+            case "edit":
+                showEdit(request, response);
+                break;
             default:
                 showList(request, response);
         }
+    }
+
+    private void showEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Lop> lops = lopService.findAll();
+        request.setAttribute("lops", lops);
+        int id = Integer.parseInt(request.getParameter("id"));
+        Student student = studentService.findById(id);
+        request.setAttribute("student", student);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("Student/edit.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     private void showDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,7 +59,7 @@ public class StudentServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Student student = studentService.findById(id);
         request.setAttribute("delete", student);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("student/delete.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("Student/delete.jsp");
         requestDispatcher.forward(request, response);
     }
 
@@ -54,8 +68,8 @@ public class StudentServlet extends HttpServlet {
         List<Lop> lops = lopService.findAll();
         request.setAttribute("lops", lops);
         int id = Integer.parseInt(request.getParameter("id"));
-        List<Student> students = studentService.findAll();
-        request.setAttribute("student", students);
+        Student student = studentService.findById(id);
+        request.setAttribute("student", student);
         request.getRequestDispatcher("Student/view.jsp").forward(request, response);
     }
 
@@ -84,15 +98,38 @@ public class StudentServlet extends HttpServlet {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
+                break;
             case"delete":{
-                delete(request,response);
+                try {
+                    delete(request,response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
+            break;
+            case "edit":
+                try {
+                    edit(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
             default:
                 showList(request, response);
         }
     }
 
-    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        String name = request.getParameter("name");
+        int age = Integer.parseInt(request.getParameter("age"));
+        int id = Integer.parseInt(request.getParameter("id"));
+        int classId = Integer.parseInt(request.getParameter("cID"));
+        Lop clazz = lopService.findById(classId);
+        studentService.update(new Student(id,name,clazz,age));
+        response.sendRedirect("/home");
+    }
+
+    private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
         studentService.delete(id);
         response.sendRedirect("/home");

@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-12">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="/students?act=create">Them</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,10 +22,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href=/students?act=edit">123 <span class="sr-only">Sua</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="/students?act=delete">Xoa</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -74,27 +74,16 @@
                             <td>${st.id}</td>
                             <td>${st.clazz.name}</td>
                              <td>
-                                 <a class="btn btn-Primary" href="/students?act=view&id=${st.id}">View</a>
-                                 <a class="btn btn-secondary">sửa</a>
-                                 <form id="delete" action="/students" method="post"></form>
-                                 <input type="hidden" name="id" value="${id}">
-                                 <input type="hidden" name="act" value="delete">
-                                 <a class="btn btn-danger" onclick="">Xóa</a>
+                                 <a class="btn btn-secondary" href="/students?act=view&id=${st.id}">View</a>
+                                 <a class="btn btn-secondary" href="/students?act=edit&id=${st.id}">sửa</a>
+                                 <a class="btn btn-secondary" href="/students?act=delete&id=${st.id}">Xóa</a>
                              </td>
                          </tr>
-
                     </c:forEach>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<script>
-    function xacNhanDelete(){
-        if(confirm("chac chua ?")){
-            document.getElementById("delete").sub//về làm
-        }
-    }
-</script>
 </body>
 </html>

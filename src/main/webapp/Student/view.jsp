@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-12">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="/students?act=create">Them</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -22,10 +22,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href=/students?act=edit">123 <span class="sr-only">Sua</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="/students?act=delete">Xoa</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
@@ -56,11 +56,41 @@
             </c:forEach>
         </div>
         <div class="col-9">
-            <h2 style="text-align: center">Xem chi tiết</h2>
+            <h2 style="text-align: center">Student List</h2>
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Class</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>${student.name}</th>
+                        <td>${student.age}</td>
+                        <td>${student.id}</td>
+                        <td>${student.clazz.name}</td>
+                        <td>
+<%--                            <a class="btn btn-secondary" href="/students?act=view&id=${st.id}">View</a>--%>
+                            <a class="btn btn-secondary" href="/students?act=edit&id=${st.id}">sửa</a>
+<%--                            <a class="btn btn-secondary" href="/students?act=delete&id=${st.id}">Xóa</a>--%>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
 </div>
-<%--&lt;%&ndash;<a href="/Lops">Hello Servlet</a>--ư--%>
 </body>
 </html>
+<%--        <div>--%>
+<%--                <tr>--%>
+<%--                    <th>${student.name}</th>--%>
+<%--                    <td>${student.age}</td>--%>
+<%--                    <td>${student.id}</td>--%>
+<%--                    <td>${student.clazz.name}</td>--%>
+<%--                </tr>--%>
+<%--        </div>--%>
+<%--    </div>--%>

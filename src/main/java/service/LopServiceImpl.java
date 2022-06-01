@@ -72,7 +72,9 @@ public class LopServiceImpl implements LopService {
     }
 
     @Override
-    public boolean delete(Lop aLop) throws SQLException {
+    public boolean delete(int t) throws SQLException {
         return false;
     }
+
+
 }
